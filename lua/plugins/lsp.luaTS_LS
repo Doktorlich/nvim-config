@@ -1,0 +1,62 @@
+return {
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        -- 1. ЯВНО ВЫКЛЮЧАЕМ vtsls (чтобы LazyExtras его не запускал)
+        vtsls = { enabled = false },
+
+        -- 2. ТВОЙ НАСТРОЕННЫЙ TSSERVER
+        tsserver = {
+         -- Функция определения корня проекта
+          root_dir = function(fname)
+            local util = require("lspconfig.util")
+            return util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git")(fname) 
+              or util.path.dirname(fname) -- Если ничего не найдено, считаем корнем папку с файлом
+          end,
+          settings = {
+            typescript = {
+              preferences = {
+                importModuleSpecifierPreference = "non-relative",
+                quotePreference = "single",
+                includeCompletionsForImportStatements = true,
+                includeCompletionsWithSnippetText = true,
+              },
+              suggest = {
+                autoImports = true,
+                includeCompletionsForModuleExports = true,
+                includePackageJsonAutoImports = "on",
+                completeFunctionCalls = true,
+              },
+              inlayHints = {
+                parameterNames = { enabled = "all" },
+                parameterTypes = { enabled = true },
+                variableTypes = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                enumMemberValues = { enabled = true },
+              },
+            },
+            javascript = {
+              preferences = {
+                importModuleSpecifierPreference = "non-relative",
+                quotePreference = "single",
+              },
+              suggest = {
+                autoImports = true,
+                includeCompletionsForModuleExports = true,
+                includePackageJsonAutoImports = "on",
+              },
+            },
+          },
+        },
+        -- 3. ОСТАЛЬНЫЕ СЕРВЕРЫ
+        html = { filetypes = { "html", "javascriptreact", "typescriptreact" } },
+        cssls = {},
+        emmet_ls = {
+          filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
+        },
+      },
+    },
+  },
+}
+

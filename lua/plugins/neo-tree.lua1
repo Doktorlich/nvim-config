@@ -1,0 +1,31 @@
+-- ~/.config/nvim/lua/plugins/neo-tree.lua
+
+return {
+  "nvim-neo-tree/neo-tree.nvim",
+  opts = function(_, opts)
+    -- ... (ваши существующие настройки выше)
+    opts.enable_git_status = true
+    opts.enable_diagnostics = false
+    opts.window.auto_expand_width = false
+
+    -- *** ОБНОВЛЕННАЯ СЕКЦИЯ ДЛЯ ИКОНОК ПАПОК ***
+    opts.default_component_configs = {
+      icon = {
+        -- Определяем иконки по умолчанию
+        folder_closed = "", 
+        folder_open = "",   
+        folder_empty = "  ", -- Используйте этот символ, а не пустые пробелы
+        default = "  "    -- Используйте этот символ
+      }
+    }
+    
+    -- Переопределяем рендерер для директорий, чтобы он использовал новые иконки
+    opts.renderers = opts.renderers or {}
+    opts.renderers.directory = {
+      { "indent" },
+      { "icon" },           -- Использует иконки, определенные выше
+      { "current_filter" },
+      { "name", use_git_status_colors = false }
+    }
+  end
+}
