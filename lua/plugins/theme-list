@@ -1,0 +1,224 @@
+Вариант 1: Antidracula (Прямая светлая инверсия Dracula)
+Если нужен именно «Dracula наоборот» — это самый точный вариант.
+
+
+  {
+    "antidracula/antidracula-nvim",
+    name = "antidracula",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme antidracula]])
+    end,
+  },
+
+
+Вариант 2: Catppuccin Latte (Самая популярная и качественная)
+Она очень мягкая, пастельная и имеет безупречную поддержку всех плагинов.
+
+
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("catppuccin").setup({ flavour = "latte" })
+      vim.cmd.colorscheme "catppuccin"
+    end,
+  },
+
+
+Вариант 3: Dayfox (Светлый вариант из семейства Nightfox)
+Похожа на Dracula своими розовыми и сиреневыми акцентами, но на светлом фоне.
+
+
+  {
+    "EdenEast/nightfox.nvim",
+    name = "nightfox",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme dayfox]])
+    end,
+  },
+
+
+Вариант 4: Tokyo Night Day (Яркая и современная)
+Для тех, кому нравится чисто белый фон и сочные цвета синтаксиса.
+
+
+  {
+    "folke/tokyonight.nvim",
+    name = "tokyonight",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("tokyonight").setup({ style = "day" })
+      vim.cmd.colorscheme "tokyonight"
+    end,
+  },
+----------------------------------------
+DRACULA
+{
+  -- 1. Добавляем сам плагин темы
+  {
+    "Mofiqul/dracula.nvim",
+    name = "dracula",
+    lazy = false, -- Тема должна загружаться сразу
+    priority = 1000, -- Высокий приоритет загрузки
+    config = function()
+      vim.cmd([[colorscheme dracula]]) -- Активируем тему
+    end,
+  },
+}
+
+
+Catppuccin (Latte) — Нежная пастельная тема, признанная одной из самых проработанных в экосистеме. 
+
+{
+  "catppuccin/nvim",
+  name = "catppuccin",
+  priority = 1000,
+  config = function()
+    require("catppuccin").setup({ flavour = "latte" })
+    vim.cmd.colorscheme "catppuccin"
+  end,
+}
+
+
+Rose Pine (Dawn) — Мягкая эстетика «утренней зари» с приглушенными цветами, которая снижает нагрузку на глаза. 
+
+{
+  "rose-pine/neovim",
+  name = "rose-pine",
+  config = function()
+    require("rose-pine").setup({ variant = "dawn" })
+    vim.cmd.colorscheme "rose-pine"
+  end,
+}
+
+
+Gruvbox Material (Light) — Современная интерпретация классического Gruvbox с более мягкими контрастами и «органической» палитрой. 
+
+{
+  "sainnhe/gruvbox-material",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    vim.g.gruvbox_material_background = "soft" -- soft, medium, hard
+    vim.g.gruvbox_material_foreground = "material"
+    vim.cmd.colorscheme "gruvbox-material"
+  end,
+}
+
+
+Kanagawa (Lotus) — Тема, вдохновленная японским искусством. Вариант lotus имитирует вид старой бумаги и чернил. 
+
+{
+  "rebelot/kanagawa.nvim",
+  config = function()
+    require("kanagawa").setup({ theme = "lotus" })
+    vim.cmd.colorscheme "kanagawa-lotus"
+  end,
+}
+
+
+GitHub (Light) — Максимально чистый и привычный вид для тех, кто привык к интерфейсу GitHub. 
+
+{
+  "projekt0n/github-nvim-theme",
+  name = "github-theme",
+  config = function()
+    require("github-theme").setup({})
+    vim.cmd.colorscheme "github_light"
+  end,
+}
+
+
+
+----------------------------------------------------------------------------------------
+Светлая тема
+
+return {
+  "catppuccin/nvim",
+  name = "catppuccin",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    require("catppuccin").setup({
+      flavour = "latte",
+      term_colors = true,
+      styles = {
+        comments = { "italic" },
+        conditionals = { "bold" }, -- Жирные условия (if/else)
+        loops = { "bold" },        -- Жирные циклы
+        functions = { "bold" },    -- Жирные названия функций
+        keywords = { "bold" },     -- Жирные ключевые слова (return, local и т.д.)
+        strings = {},
+        variables = {},
+        numbers = { "bold" },
+        booleans = { "bold" },
+      },
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        treesitter = true,
+        notify = true,
+      },
+      -- Если хочешь еще больше контраста, можно чуть подтемнить текст синтаксиса:
+		highlight_overrides = {
+		  latte = function(colors)
+			return {
+			  -- 1. ТЕКСТ ПОДСКАЗКИ (val, visualViewport и т.д.)
+			  -- Делаем его максимально темным для четкости
+			  CmpItemAbbr = { fg = colors.text, style = { "bold" } },
+
+			  -- 2. ТЕКСТ МЕЖДУ НАЗВАНИЕМ И ТИПОМ (самое важное!)
+			  -- Это те самые "data: recordsstring", которые плохо видно. 
+			  -- Используем более темный серый (subtext0) вместо бледного overlay.
+			  CmpItemAbbrDeprecated = { fg = colors.subtext0, style = { "strikethrough" } },
+			  CmpItemMenu = { fg = colors.subtext0, style = { "italic" } },
+
+			  -- 3. ЦВЕТ СОВПАДЕНИЯ (буквы 'v-a-l', которые ты ввел)
+			  -- Оставляем их яркими, но темными (например, темно-синим)
+			  CmpItemAbbrMatch = { fg = colors.blue, style = { "bold" } },
+			  CmpItemAbbrMatchFuzzy = { fg = colors.blue, style = { "bold" } },
+
+			  -- 4. ТИП (Variable, Keyword справа)
+			  -- Сделаем их чуть насыщеннее, чтобы они не были "розовым туманом"
+			  CmpItemKind = { fg = colors.lavender, style = { "bold" } },
+
+			  -- 5. ФОН ОКНА (убираем прозрачность и делаем границы четкими)
+			  Pmenu = { fg = colors.text, bg = colors.surface0 }, 
+			  PmenuSel = { fg = colors.base, bg = colors.blue, style = { "bold" } },
+			  
+			  -- Твои предыдущие настройки
+			  Comment = { fg = colors.overlay1 },
+			}
+		  end,
+		},
+    })
+    vim.cmd.colorscheme "catppuccin"
+  end,
+}
+
+
+---------------------------------------------------------------------------------
+Тема темная Dracula с linux 
+return {
+  -- 1. Добавляем сам плагин темы
+  {
+    "Mofiqul/dracula.nvim",
+    name = "dracula",
+    lazy = false, -- Тема должна загружаться сразу
+    priority = 1000, -- Высокий приоритет загрузки
+    config = function()
+      vim.cmd([[colorscheme dracula]]) -- Активируем тему
+    end,
+  },
+}
+
+
+
