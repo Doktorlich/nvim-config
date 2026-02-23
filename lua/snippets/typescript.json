@@ -1,0 +1,7 @@
+{
+  "Interpolation": {
+    "prefix": "$",
+    "body": ["${${1}}"],
+    "description": "Insert ${}"
+  }
+}
