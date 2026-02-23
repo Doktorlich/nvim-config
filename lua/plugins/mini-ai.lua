@@ -5,7 +5,7 @@ return {
     local ai = require("mini.ai")
     return {
       n_lines = 500, -- Было 500. Меньше строк для сканирования = меньше нагрузки.
-    -- остальное оставь как есть
+      -- остальное оставь как есть
       custom_textobjects = {
         o = ai.gen_spec.treesitter({ -- code block
           a = { "@block.outer", "@conditional.outer", "@loop.outer" },

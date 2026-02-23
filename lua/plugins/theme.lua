@@ -54,6 +54,46 @@ return {
 			  
 			  -- Твои предыдущие настройки
 			  Comment = { fg = colors.overlay1 },
+
+            -- Меняем красный цвет встроенных переменных (this, console, process и т.д.)
+            -- colors.blue или colors.sapphire сделают их спокойно-синими
+            ["@variable.builtin"] = { fg = colors.sapphire }, 
+            ["@variable.builtin.javascript"] = { fg = colors.sapphire },
+            ["@variable.builtin.typescript"] = { fg = colors.sapphire },
+
+            -- Если хотите, чтобы 'this' выделялся, но не красным, можно использовать мадженту:
+            ["@variable.builtin.this"] = { fg = colors.mauve, style = { "italic" } },
+
+                
+            -- Обычные переменные (user1, user2)
+            --["@variable"] = { fg = colors.text }, -- Сделает их обычным цветом текста (черным в Latte)
+
+            -- Параметры функций (nameArg, ageArg)
+            -- В Latte они часто красные или оранжевые. Сделаем их темно-бордовыми или синими:
+            ["@variable.parameter"] = { fg = colors.maroon, style = { "italic" } }, 
+
+            -- Поля объектов (this.name)
+            ["@variable.member"] = { fg = colors.lavender }, 
+
+            -- Аргументы функций и конструкторов (nameArg, ageArg)
+            -- colors.maroon (бордовый) или colors.teal (бирюзовый) будут мягче
+            ["@variable.parameter"] = { fg = colors.flamingo, style = { "italic" } },
+
+            -- Для TypeScript/JavaScript специфично (иногда нужно уточнить)
+            --["@variable.parameter.javascript"] = { fg = colors.flamingo, style = { "italic" } },
+           -- ["@variable.parameter.typescript"] = { fg = colors.flamingo, style = { "italic" } },
+
+            -- Типы данных (string, number, boolean, void)
+           --["@type"] = { fg = colors.subtext0, style = { "italic" } }, 
+
+            -- Встроенные типы (специфично для TS/JS)
+            --["@type.builtin"] = { fg = colors.subtext0, style = { "italic" } },
+
+            -- Если используете кастомные интерфейсы или классы как типы
+            -- ["@type.definition"] = { fg = colors.peach },
+
+
+
 			}
 		  end,
 		},
