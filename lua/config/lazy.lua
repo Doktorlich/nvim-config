@@ -19,6 +19,8 @@ require("lazy").setup({
     -- 1. Ядро LazyVim
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
+    { import = "lazyvim.plugins.extras.coding.luasnip" }, 
+
     -- 2. Импорт экстр (строго ПЕРЕД твоими плагинами)
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },

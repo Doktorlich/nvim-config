@@ -1,0 +1,9 @@
+{
+  "Variable interpolation": {
+    "prefix": "testBucket",
+    "body": [
+      "{${1:variable}}$0"
+    ],
+    "description": "Insert ${} for template strings"
+  }
+}
