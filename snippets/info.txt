@@ -1,0 +1,7 @@
+Создаем файл с подобныс названием и вставляем в него сниппеты в формате json.
+
+    javascript.json — подгрузится только в .js файлах.
+    typescript.json — подгрузится только в .ts файлах.
+    javascriptreact.json — только для .jsx.
+    typescriptreact.json — только для .tsx.
+    all_snippets.json — для всех 4х типов расширений  
