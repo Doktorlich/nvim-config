@@ -19,5 +19,110 @@
     "prefix": "img",
     "body": "<img src='$1' alt='$2' ${3|class,className|}='$4'/>",
     "description": "<img src='arg1' alt='arg2' class|className ='arg3'/>"
+  },
+
+  "TypeScript React Component": {
+    "prefix": "rtsfc",
+    "body": [
+      "import { type ReactNode } from 'react'",
+      "",
+      "interface ${TM_FILENAME_BASE}Props {",
+      " $4",
+      " children?:ReactNode;",
+      "};",
+      "",
+      "function ${TM_FILENAME_BASE}($3:${TM_FILENAME_BASE}Props) {",
+      "  return (",
+      "    <$1>",
+      "      $0",
+      "    </$1>",
+      "  );",
+      "}",
+      "",
+      "export default ${TM_FILENAME_BASE};"
+    ],
+    "description": "Create typeScript react fuctional component"
+  },
+
+  "useState": {
+    "prefix": "useState",
+    "body": ["const [${1:state}, set${2:State}] = useState(${3:initialState});"],
+    "description": "React useState hook"
+  },
+
+  "useStateTS": {
+    "prefix": "useStateTS",
+    "body": ["const [${1:state}, set${2:State}] = useState<${3:Type}>(${4:initialValue});"],
+    "description": "React useState with Generic (TSX)"
+  },
+
+  "useEffect": {
+    "prefix": "useEffect",
+    "body": [
+      "useEffect(() => {",
+      "  ${1:// effect}",
+      "  return () => {",
+      "    ${2:// cleanup}",
+      "  };",
+      "}, [${3:dependencies}]);"
+    ],
+    "description": "TS: useEffect hook"
+  },
+
+  "useCallback": {
+    "prefix": "useCallback",
+    "body": [
+      "const ${1:memoizedCallback} = useCallback((${2:args}) => {",
+      "  ${3:logic}",
+      "}, [${4:dependencies}]);"
+    ],
+    "description": "TS: useCallback hook"
+  },
+
+  "useMemo": {
+    "prefix": "useMemo",
+    "body": [
+      "const ${1:memoizedValue} = useMemo<${2:type}>(() => ${3:compute}(), [${4:dependencies}]);"
+    ],
+    "description": "TS: useMemo with generic type"
+  },
+
+  "useRef": {
+    "prefix": "useRef",
+    "body": ["const ${1:refName} = useRef<${2:HTMLDivElement}>(null);"],
+    "description": "TS: useRef with HTML element type"
+  },
+
+  "useContext": {
+    "prefix": "useContext",
+    "body": ["const ${1:value} = useContext<${2:Type}>(${3:ContextName});"],
+    "description": "TS: useContext with type"
+  },
+
+  "useReducer": {
+    "prefix": "useReducer",
+    "body": ["const [state, dispatch] = useReducer(${1:reducer}, ${2:initialState});"],
+    "description": "TS: useReducer hook"
+  },
+
+  "handleSubmit": {
+    "prefix": "handleSubmit",
+    "body": [
+      "function handleSubmit(event: SubmitEvent<HTMLFormElement>) {",
+      "  event.preventDefault();",
+      "  ${1}",
+      "};"
+    ],
+    "description": "TS: Handle form submit (New SubmitEvent type)"
+  },
+
+  "handleChange": {
+    "prefix": "handleChange",
+    "body": [
+      "function handleChange(event:ChangeEvent<HTML${1:InputElement}>) {",
+      "  ${2:setValue}(event.target.value);",
+      "};"
+    ],
+    "description": "TS: Handle input change with ChangeEvent"
   }
 }
