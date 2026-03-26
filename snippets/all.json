@@ -1,9 +1,23 @@
 {
-  "Variable interpolation": {
-    "prefix": "testBucket",
+  "React Component": {
+    "prefix": "rfc",
     "body": [
-      "{${1:variable}}$0"
+      "function ${TM_FILENAME_BASE}() {",
+      "  return (",
+      "    <$1>",
+      "      $0",
+      "    </$1>",
+      "  );",
+      "}",
+      "",
+      "export default ${TM_FILENAME_BASE};"
     ],
-    "description": "Insert ${} for template strings"
+    "description": "Create react fuctional component"
+  },
+
+  "Image Closed Tag": {
+    "prefix": "img",
+    "body": "<img src='$1' alt='$2' ${3|class,className|}='$4'/>",
+    "description": "<img src='arg1' alt='arg2' class|className ='arg3'/>"
   }
 }

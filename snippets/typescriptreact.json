@@ -1,2 +1,8 @@
-{}
+{
+  "test_snip": {
+    "prefix": "testitTSX",
+    "body": "console.log('it works!')",
+    "description": "Проверка сниппета"
+  }
+}
 
