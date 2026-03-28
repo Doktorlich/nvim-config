@@ -1,15 +1,8 @@
 {
-  "Test Snippet": {
-    "prefix": "testit",
-    "body": ["console.log('it works')"],
-    "description": "Just for test"
-  },
-  "Variable interpolation": {
-    "prefix": "$",
-    "body": [
-      "{${1:variable}}$0"
-    ],
-    "description": "Insert ${} for template strings"
+  "test_snip": {
+    "prefix": "testitJS",
+    "body": "console.log('it works!')",
+    "description": "Проверка сниппета"
   }
 }
 
