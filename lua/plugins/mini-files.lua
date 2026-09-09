@@ -1,0 +1,63 @@
+return {
+  "echasnovski/mini.files",
+  opts = {
+    windows = {
+      preview = true,
+      width_focus = 30,
+      width_preview = 40, -- Чуть шире для удобства чтения кода
+    },
+    options = {
+      use_as_default_explorer = true,
+    },
+  },
+  keys = {
+    {
+      "<leader>e",
+      function()
+        local mf = require("mini.files")
+        if not mf.close() then
+          mf.open(vim.api.nvim_buf_get_name(0), true)
+        end
+      end,
+      desc = "Toggle MiniFiles (File)",
+    },
+    {
+      "<leader>E",
+      function()
+        local mf = require("mini.files")
+        if not mf.close() then
+          mf.open(vim.uv.cwd(), true)
+        end
+      end,
+      desc = "Toggle MiniFiles (CWD)",
+    },
+  },
+  config = function(_, opts)
+    require("mini.files").setup(opts)
+
+    -- Улучшение внешнего вида (Borders & Clean UI)
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "MiniFilesWindowOpen",
+      callback = function(args)
+        local win_id = args.data.win_id
+        -- Добавляем скругленные границы
+        vim.api.nvim_win_set_config(win_id, { border = "rounded" })
+        -- Убираем номера строк для чистоты
+        vim.wo[win_id].number = false
+        vim.wo[win_id].relativenumber = false
+        vim.wo[win_id].cursorline = true
+      end,
+    })
+
+    -- Автоматическое обновление при изменении файлов
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "MiniFilesActionRename",
+      callback = function(args)
+        -- Интеграция с LSP (если нужно переименовывать импорты в коде)
+        if Snacks then
+          Snacks.rename.on_rename_file(args.data.from, args.data.to)
+        end
+      end,
+    })
+  end,
+}

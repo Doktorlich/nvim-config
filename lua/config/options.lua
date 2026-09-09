@@ -43,6 +43,19 @@ vim.opt.undofile = true
 
 vim.opt.shell = "/bin/bash"
 
+-- Настройка диагностики (перенесено из мёртвого lua/config/diagnostics_settings.lua!,
+-- который никогда не подключался из-за "!" в имени файла)
+vim.diagnostic.config({
+  virtual_text = true, -- текст в конце строки
+  float = {
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+    wrap = true, -- включить перенос строк в окне
+  },
+})
+
 -- local fg_dark = "#4c4f69" -- Темно-серый из палитры Latte
 -- local fg_black = "#000000" -- Чистый черный для текста
 --

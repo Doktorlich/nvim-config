@@ -18,7 +18,9 @@
 -- })
 
 -- Группа для автосохранения, чтобы не дублировать команды
---local autosave_group = vim.api.nvim_create_augroup("Autosave", { clear = true })
+-- (была закомментирована — из-за этого autosave_group ниже был nil,
+-- автокоманда не группировалась и дублировалась при каждом :source конфига)
+local autosave_group = vim.api.nvim_create_augroup("Autosave", { clear = true })
 
 -- 1. Сохранение при смене фокуса (ушли из окна терминала или переключились на браузер)
 -- 2. При выходе из режима вставки (InsertLeave)

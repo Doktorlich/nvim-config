@@ -19,9 +19,7 @@ for _, mode in ipairs(modes) do
 end
 
 
--- Явно переопределяем <leader>e для запуска mini.files
--- vim.keymap.set("n", "<leader>e", function() require("mini.files").toggle() end, { desc = "Toggle MiniFiles" })
-
+-- <leader>e / <leader>E уже назначены на mini.files в lua/plugins/mini-files.lua — здесь не дублируем
 
 -- Удаляем стандартное действие 's' (обычно это поиск вперед) в нормальном режиме ('n')
 -- vim.keymap.del("n", "s")

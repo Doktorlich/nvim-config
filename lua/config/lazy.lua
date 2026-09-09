@@ -14,28 +14,24 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.opt.runtimepath:prepend(vim.fn.stdpath("data") .. "/site")
 require("lazy").setup({
   spec = {
     -- 1. Ядро LazyVim
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
-    { import = "lazyvim.plugins.extras.coding.luasnip" }, 
+    -- Extras (coding.*, lang.*, editor.* и т.д.) больше НЕ импортируются здесь руками —
+    -- единственный источник истины для них теперь lazyvim.json (управляется через :LazyExtras).
 
-    -- 2. Импорт экстр (строго ПЕРЕД твоими плагинами)
-    { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.lang.tailwind" },
-    { import = "lazyvim.plugins.extras.formatting.prettier" },
-
-    -- 3. Твои кастомные настройки (папка lua/plugins/)
+    -- 2. Твои кастомные настройки (папка lua/plugins/)
     { import = "plugins" },
-  }, -- Здесь запятая, продолжаем таблицу настроек
+  },
   defaults = {
     lazy = true,
     version = false,
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
-  checker = { enabled = false }, 
+  checker = { enabled = false },
   change_detection = {
     enabled = true,
     notify = true,
@@ -43,9 +39,15 @@ require("lazy").setup({
   performance = {
     rtp = {
       disabled_plugins = {
-        "gzip", "matchit", "matchparen", "netrwPlugin", "tarPlugin", "tohtml", "tutor", "zipPlugin",
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
       },
     },
   },
-}) -- Вот здесь ОДИН РАЗ закрываем всё
-
+})
