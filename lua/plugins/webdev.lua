@@ -33,6 +33,7 @@ return {
         "eslint-lsp", -- Линтер для JS
         "vtsls", -- Языковой сервер TS
         "stylua", -- Форматировщик для Lua
+        "stylelint-language-server", -- Линтер CSS/SCSS (старое имя stylelint-lsp — deprecated в Mason)
       },
     },
   },
