@@ -19,7 +19,7 @@ for _, mode in ipairs(modes) do
 end
 
 
--- <leader>e / <leader>E уже назначены на mini.files в lua/plugins/mini-files.lua — здесь не дублируем
+-- <leader>e / <leader>E назначены на Snacks Explorer (extra editor.snacks_explorer в lazyvim.json)
 
 -- Удаляем стандартное действие 's' (обычно это поиск вперед) в нормальном режиме ('n')
 -- vim.keymap.del("n", "s")
